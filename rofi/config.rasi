@@ -1,0 +1,9 @@
+configuration {
+  font: "Roboto Medium 10";
+  show-icons: true;
+  hide-scrollbar: true;
+  theme: "~/.config/rofi/theme.rasi";
+  kb-cancel: "Escape,Alt+F1";
+  width: 10;
+  drun-icon-theme: "Papirus Dark";
+}

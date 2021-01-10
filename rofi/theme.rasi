@@ -1,0 +1,96 @@
+* {
+  background: #191919;
+  foreground: #f9f9f9;
+  selected: #303030;
+}
+
+window {
+  transparency: "real";
+  background-color: @background;
+  text-color: @foreground;
+  border-color: #ffffff;
+  border: 3px;
+}
+
+prompt {
+  enabled: true;
+  padding: 4px 4px 6px 6px;
+  background-color: @background;
+  text-color: @foreground;
+}
+
+textbox-prompt-colon {
+  expand: false;
+  background-color: @background;
+  padding: 4px 0px 0px 6px;
+}
+
+inputbar {
+  children: [ textbox-prompt-colon, entry ];
+  background-color: @background;
+  text-color: @foreground;
+  expand: false;
+  border-radius: 0px;
+  border-color: @selected;
+  margin: 0px 0px 0px 0px;
+  padding: 5px 0px 4px 0px;
+  position: center;
+}
+
+entry {
+  background-color: @background;
+  text-color: @foreground;
+  placeholder-color: @foreground;
+  expand: true;
+  horizontal-align: 0;
+  blink: true;
+  padding: 4px 0px 0px 4px;
+}
+
+case-indicator {
+  background-color: @background;
+  text-color: @foreground;
+  spacing: 0;
+}
+
+listview {
+  background-color: @background;
+  columns: 1;
+  spacing: 5px;
+  cycle: true;
+  dynamic: true;
+  layout: vertical;
+}
+
+mainbox {
+  background-color: @background;
+  children: [ inputbar, listview ];
+  spacing: 5px;
+  padding: 0px 0px 0px 0px;
+}
+
+element {
+  background-color: @background;
+  text-color: @foreground;
+  orientation: horizontal;
+  border-radius: 0px;
+  padding: 8px 8px 8px 8px;
+}
+
+element-icon {
+  size: 22;
+}
+
+element-text {
+  expand: true;
+  horizontal-align: 0;
+  vertical-align: 0;
+  margin: 2px 0px 2px 2px;
+}
+
+element selected {
+  background-color: @selected;
+  text-color: @foreground;
+  border-radius: 3px;
+  border-color: @selected;
+}

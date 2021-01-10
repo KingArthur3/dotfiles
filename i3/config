@@ -1,0 +1,167 @@
+################
+#####Colors#####
+################
+
+set $focus #F9F9F9
+set $nofocus #C1C1C1
+
+client.focused           $focus $focus $focus $focus $focus
+client.unfocused         $nofocus $nofocus $nofocus $nofocus $nofocus
+client.focused_inactive  $nofocus $nofocus $nofocus $nofocus $nofocus
+client.urgent            $nofocus $nofocus $nofocus $nofocus $nofocus
+client.placeholder       $nofocus $nofocus $nofocus $nofocus $nofocus
+
+###############
+#####Setup#####
+###############
+
+# Autostart applications
+assign [class="Thunderbird"] 6
+assign [class="Audacious"] 5
+
+exec --no-startup-id audacious
+exec --no-startup-id thunderbird
+
+exec --no-startup-id i3-msg workspace 1
+
+# Set keyboard layout, repeat rate and delay
+exec_always --no-startup-id xset r rate 220 40
+exec --no-startup-id setxkbmap -layout pl
+
+# Start picom compositor
+exec --no-startup-id picom -b
+
+# Start Dunst
+exec --no-startup-id dunst
+
+# Start polybar
+exec_always --no-startup-id $HOME/.config/polybar/startup.sh
+
+# Disable window titlebars and enable borders
+for_window [class="^.*"] border pixel 3
+
+# Set gaps
+gaps outer 7
+gaps bottom 54
+gaps inner 7
+
+# Configure screens and set wallpaper
+exec --no-startup-id xrandr --output eDP-1 --off
+exec --no-startup-id $HOME/.config/i3/setup-screens.sh
+
+# Start polkit
+exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
+
+# Start udiskie (device manager)
+exec --no-startup-id udiskie
+
+# Disable mouse follow focus
+focus_follows_mouse no
+
+# Set modifier key (Alt)
+set $mod Mod1
+
+# Set font
+font pango:Roboto Medium 8
+
+###################
+#####Shortcuts#####
+###################
+
+# Toggle polybar
+bindsym $mod + z exec polybar-msg cmd toggle
+
+
+# Volume controls
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioStop exec playerctl stop
+
+# Modifier key to move floating windows
+floating_modifier $mod
+
+# Kill focused window
+bindsym $mod+x kill
+
+# Start rofi (a program launcher)
+bindsym $mod+space exec --no-startup-id rofi -show drun -lines 8
+
+# Open a new terminal
+bindsym $mod + Return exec konsole
+
+# Take a screenshot
+bindsym Print exec escrotum 
+
+# Change focused window
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split in horizontal orientation
+bindsym $mod+a split h
+
+# Split in vertical orientation
+bindsym $mod+s split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Workspace variables
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+
+# Asign all workspaces to monitor
+workspace $ws1 output HDMI-1
+workspace $ws2 output HDMI-1
+workspace $ws3 output HDMI-1
+workspace $ws4 output HDMI-1
+workspace $ws5 output HDMI-1
+workspace $ws6 output HDMI-1
+
+# Switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move window to workspace number $ws1
+bindsym $mod+Shift+2 move window to workspace number $ws2
+bindsym $mod+Shift+3 move window to workspace number $ws3
+bindsym $mod+Shift+4 move window to workspace number $ws4
+
+# Resize focused window
+set $pixels 8
+bindsym $mod + j resize shrink width $pixels
+bindsym $mod + k resize grow height $pixels
+bindsym $mod + l resize shrink height $pixels
+bindsym $mod + semicolon resize grow width $pixels
+
+# Restart i3
+bindsym $mod+Shift+r restart
+
+# Power management
+bindsym $mod + Escape exec shutdown now
+bindsym $mod + r exec reboot
+bindsym $mod + q exec i3msg exit 

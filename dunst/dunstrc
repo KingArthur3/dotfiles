@@ -1,0 +1,135 @@
+[global]
+    # Display notifications on monitor with mouse
+    follow = mouse
+
+    # The geometry of the notification window
+    geometry = "512x48-13-60"
+
+    # Height of the separator
+    separator_height = 2
+    
+    # Padding between text and separator
+    padding = 8
+
+    # Horizontal padding
+    horizontal_padding = 12
+
+    # Frame width
+    frame_width = 3
+
+    # Sort messages by urgency
+    sort = no
+
+    # Don't remove messages, if the user is idle (no mouse or keyboard input)
+    # for longer than idle_threshold seconds
+    idle_threshold = 30
+
+    # Font
+    font = Roboto Medium 10
+    
+    # Spacing between lines
+    line_height = 0
+
+    # Enable markup
+    markup = full
+
+    # Format of the message
+    format = "<b>%s</b>\n\n%b"
+
+    # Alignment of message text
+    alignment = left
+
+    # Vertical alignment of message text and icon.
+    vertical_alignment = center
+
+    # Show age of message if message is older than show_age_threshold
+    # Set to -1 to disable
+    show_age_threshold = -1
+
+    # Split notifications into multiple lines if they don't fit into
+    # geometry
+    word_wrap = yes
+
+    # When word_wrap is set to no, specify where to make an ellipsis in long lines
+    ellipsize = middle
+
+    # Ignore newlines '\n' in notifications.
+    ignore_newline = no
+
+    # Stack together notifications with the same content
+    stack_duplicates = false
+
+    # Hide the count of stacked notifications with the same content
+    hide_duplicate_count = true
+
+    # Display indicators for URLs (U) and actions (A).
+    show_indicators = no
+
+    # Align icons
+    icon_position = left
+
+    # Scale larger icons down to this size, set to 0 to disable
+    max_icon_size = 32
+
+    # Paths to default icons.
+    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+
+    # Should a notification popped up from history be sticky or timeout
+    # as if it would normally do.
+    sticky_history = yes
+
+    # Maximum amount of notifications kept in history
+    history_length = 20
+
+    # Browser for opening urls in context menu.
+    browser = /usr/bin/firefox -new-tab
+
+    # Always run rule-defined scripts, even if the notification is suppressed
+    always_run_script = true
+
+    # Define the title of the windows spawned by dunst
+    title = Dunst
+
+    # Define the class of the windows spawned by dunst
+    class = Dunst
+
+    # Print a notification on startup.
+    # This is mainly for error detection, since dbus (re-)starts dunst
+    # automatically after a crash.
+    startup_notification = false
+
+    # Manage dunst's desire for talking
+    # Can be one of the following values:
+    #  crit: Critical features. Dunst aborts
+    #  warn: Only non-fatal warnings
+    #  mesg: Important Messages
+    #  info: all unimportant stuff
+    # debug: all less than unimportant stuff
+    verbosity = mesg
+
+    # Notification window radius
+    corner_radius = 3
+
+    # Mouse actions
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+
+[shortcuts]
+    # Close notification.
+    close = ctrl+space
+
+    # Close all notifications.
+    close_all = ctrl+shift+space
+
+    # Redisplay last message(s).
+    history = ctrl+Tab
+
+[setup]
+    summary = "*"
+    background = "#232323"
+    foreground = "#f9f9f9"
+    timeout = 10
+    frame_color = "#f9f9f9"
+    script = $HOME/.config/dunst/sound.sh
